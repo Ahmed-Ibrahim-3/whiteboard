@@ -1,0 +1,8 @@
+node_modules/
+dist/
+public/excalidraw/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store

@@ -1,0 +1,35 @@
+{
+  "name": "research-whiteboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "check": "tsc -b",
+    "build": "npm run check && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
+    "postinstall": "node scripts/copy-fonts.mjs"
+  },
+  "dependencies": {
+    "@excalidraw/excalidraw": "0.18.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "typescript": "~5.9.3",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
+  },
+  "overrides": {
+    "nanoid@^3.0.0": "3.3.20",
+    "lodash-es": "4.18.1"
+  }
+}
