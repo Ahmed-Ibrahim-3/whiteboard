@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { CanvasAdapter } from './canvas/CanvasAdapter';
+import { CanvasStudio } from './canvas/CanvasStudio';
 import type { CanvasDocument, CanvasHandle, CanvasSelection } from './canvas/types';
 import { createBoard, emptyMetadata, loadBoard, researchKinds, saveBoard } from './boards/storage';
 import type { Board, ResearchMetadata } from './boards/storage';
@@ -15,7 +15,7 @@ export function App() {
   const [dirty, setDirty] = useState(false);
   const [error, setError] = useState(initial.error);
   const [ready, setReady] = useState(false);
-  const [panelOpen, setPanelOpen] = useState(true);
+  const [panelOpen, setPanelOpen] = useState(() => window.matchMedia('(min-width: 900px)').matches);
   const [selection, setSelection] = useState<CanvasSelection | null>(null);
   const canvas = useRef<CanvasHandle>(null);
   const lastDocument = useRef<CanvasDocument | null>(null);
@@ -90,20 +90,15 @@ export function App() {
     {error && <div className="error-banner" role="alert">{error}</div>}
     <main className="workspace">
       <section className="canvas-area" aria-label="Research canvas">
-        <div className="board-toolbar" aria-label="Board actions">
-          <button className="secondary" disabled={!ready} onClick={() => canvas.current?.addTextCard()}><span aria-hidden="true">＋</span> Sticky Note</button>
-          <button className="quiet" disabled={!ready} onClick={() => canvas.current?.fitToContent()}>Fit board</button>
-          <span className="toolbar-hint">Double-click a card to edit its text</span>
-        </div>
         <div className="canvas-editor">
-          <CanvasAdapter ref={canvas} initialDocument={initial.board.canvas} onChange={handleChange}
+          <CanvasStudio ref={canvas} initialDocument={initial.board.canvas} onChange={handleChange}
             onSelectionChange={handleSelection} onReady={handleReady} />
         </div>
       </section>
       {panelOpen && <aside className="research-panel" aria-label="Element research">
-        <div className="panel-heading"><div><span className="eyebrow">CONTEXT FOR YOUR CANVAS</span><h1>Research</h1></div><button className="close-button" aria-label="Close research panel" onClick={() => setPanelOpen(false)}>×</button></div>
+        <div className="panel-heading"><h1>Research</h1><button className="close-button" aria-label="Close research panel" onClick={() => setPanelOpen(false)}>×</button></div>
         {selection ? <div className="metadata-form">
-          <div className="selection-info"><span className="element-badge">{selection.type}</span><p>Attach context to this element.</p></div>
+          <div className="selection-info"><span className="element-badge">{selection.type}</span></div>
           <label htmlFor="research-kind">Research type</label>
           <select id="research-kind" value={metadata.kind} onChange={event => updateMetadata({ kind: event.target.value as ResearchMetadata['kind'] })}>
             <option value="">No type</option>{researchKinds.map(kind => <option key={kind} value={kind}>{kind[0].toUpperCase() + kind.slice(1)}</option>)}
@@ -111,10 +106,9 @@ export function App() {
           <label htmlFor="research-source">Source</label>
           <input id="research-source" placeholder="A URL, interview, or reference" value={metadata.source} onChange={event => updateMetadata({ source: event.target.value })} />
           <label htmlFor="research-notes">Notes</label>
-          <textarea id="research-notes" rows={7} placeholder="What does this tell you?" value={metadata.notes} onChange={event => updateMetadata({ notes: event.target.value })} />
+          <textarea id="research-notes" rows={7} placeholder="Add notes about this element" value={metadata.notes} onChange={event => updateMetadata({ notes: event.target.value })} />
           <details className="element-details"><summary>Element details</summary><code>{selection.id}</code></details>
-        </div> : <div className="panel-empty"><div className="empty-symbol" aria-hidden="true">↖</div><h2>Every idea has a story.</h2><p>Select one shape, card, or stroke to add a source, observation, claim, or question.</p><div className="research-legend">{researchKinds.map(kind => <span key={kind} className={`kind kind-${kind}`}>{kind}</span>)}</div></div>}
-        {/* <div className="local-note"><span className="eyebrow">LOCAL PROTOTYPE</span><p>Save to keep this board in this browser. Sharing and live collaboration are coming in a later milestone.</p></div> */}
+        </div> : <div className="panel-empty"><h2>Select an element</h2><p>Select one shape, card, or stroke to add a source, observation, claim, or question.</p><div className="research-legend">{researchKinds.map(kind => <span key={kind} className={`kind kind-${kind}`}>{kind}</span>)}</div></div>}
       </aside>}
     </main>
   </div>;

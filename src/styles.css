@@ -24,15 +24,11 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .quiet { background: transparent; border: 1px solid transparent; color: #5e7267; }
 .workspace { flex: 1; min-height: 0; display: flex; }
 .canvas-area { min-width: 0; flex: 1; display: flex; flex-direction: column; }
-.board-toolbar { display: flex; align-items: center; gap: 8px; min-height: 58px; padding: 10px 20px; border-bottom: 1px solid #e7ebe5; }
-.toolbar-hint { margin-left: auto; color: #89948c; font-size: 11px; }
 .canvas-editor { position: relative; flex: 1; min-height: 0; }
-.canvas-editor .excalidraw { --color-primary: #436c5c; --color-primary-darker: #305c4e; --color-primary-darkest: #244a3e; --color-primary-light: #e6eee8; }
-.canvas-welcome { max-width: 300px; text-align: center; font: 14px/1.7 ui-sans-serif, sans-serif; color: #71817a; }
 .research-panel { flex: 0 0 300px; overflow-y: auto; display: flex; flex-direction: column; background: #fff; border-left: 1px solid #e2e8e3; padding: 27px 22px 20px; }
 .panel-heading { display: flex; justify-content: space-between; gap: 8px; align-items: center; }
-.eyebrow { color: #89968d; font-size: 9px; font-weight: 650; letter-spacing: 1.3px; }
 h1 { margin: 8px 0 0; font-size: 23px; font-weight: 550; letter-spacing: -.6px; }
+.panel-heading h1 { margin: 0; }
 .close-button { width: 28px; height: 28px; background: transparent; border: 0; border-radius: 6px; color: #89968d; font-size: 23px; }
 .close-button:hover { background: #f2f5f0; }
 .panel-empty { margin: 58px 0; }

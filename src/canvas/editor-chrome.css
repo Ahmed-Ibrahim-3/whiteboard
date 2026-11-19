@@ -1,0 +1,41 @@
+/* Pinned Excalidraw 0.18.1 integration seam. Hide its chrome, not its editing
+   layer, dialogs, search, context menus, or touch finalise control. Keep native
+   history buttons: the public API does not expose undo/redo commands. */
+.research-engine { width: 100%; height: 100%; }
+.research-engine .excalidraw {
+  --color-primary: #305c4e;
+  --color-primary-darker: #254c40;
+  --color-primary-darkest: #1d3d33;
+  --color-primary-light: #e8eee5;
+  --color-surface-primary-container: #dce8dd;
+  --color-on-primary-container: #305c4e;
+  --color-surface-low: #fffefb;
+  --island-bg-color: #fffefb;
+  --ui-font: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.research-engine .excalidraw .App-menu_top,
+.research-engine .excalidraw .App-top-bar,
+.research-engine .excalidraw .App-menu__left,
+.research-engine .excalidraw .layer-ui__wrapper__top-right,
+.research-engine .excalidraw .layer-ui__wrapper__footer-right,
+.research-engine .excalidraw .zoom-actions,
+.research-engine .excalidraw .HintViewer,
+.research-engine .excalidraw .welcome-screen-center,
+.research-engine .excalidraw .welcome-screen-decor,
+.research-engine .excalidraw .disable-zen-mode { display: none !important; }
+.research-engine .excalidraw .App-menu_bottom { bottom: 18px; padding: 0 20px; }
+.research-engine .excalidraw .undo-redo-buttons { border: 1px solid #dedfd4; border-radius: 10px; padding: 3px; background: #fffefb; box-shadow: 0 3px 14px #314b3d08; }
+.research-engine .excalidraw .undo-redo-buttons button { width: 32px; height: 32px; border: 0 !important; border-radius: 7px !important; color: #446354; }
+.research-engine .excalidraw .undo-redo-buttons button:hover { background: #edf1e8 !important; }
+.research-engine .excalidraw .undo-redo-buttons .ToolIcon__icon { border-radius: 7px !important; }
+/* Mobile has a different engine toolbar. Preserve its native history actions. */
+.research-engine .excalidraw .App-bottom-bar { width: auto; right: auto; left: 14px; bottom: 18px; margin: 0 !important; }
+.research-engine .excalidraw .App-bottom-bar .App-toolbar-content > :not(:last-child) { display: none !important; }
+.research-engine .excalidraw .App-bottom-bar .Island { background: transparent; box-shadow: none; padding: 0; }
+.research-engine .excalidraw .App-bottom-bar .App-toolbar { padding: 0; }
+.research-engine .excalidraw .App-bottom-bar .App-toolbar-content { padding: 3px; border: 1px solid #dedfd4; border-radius: 10px; background: #fffefb; box-shadow: 0 3px 14px #314b3d08; }
+.research-engine .excalidraw .App-bottom-bar .App-toolbar-content > div:last-child { display: flex; gap: 0; margin: 0; }
+.research-engine .excalidraw .App-bottom-bar .App-toolbar-content button { width: 32px; height: 32px; border-radius: 7px; background: transparent; color: #446354; border: 0; }
+.research-engine .excalidraw .App-bottom-bar .App-toolbar-content button:hover { background: #edf1e8; }
+.research-engine .excalidraw .App-bottom-bar .App-toolbar-content .ToolIcon__icon { width: 32px; height: 32px; border-radius: 7px; }
+.research-engine .excalidraw .App-bottom-bar .App-toolbar-content svg { width: 16px; height: 16px; }
